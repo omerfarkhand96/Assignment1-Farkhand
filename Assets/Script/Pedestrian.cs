@@ -27,7 +27,7 @@ public class Pedestrian : MonoBehaviour
     void Update()
     {
         currRot = pedRot;
-        
+        StartCoroutine(Countdown());
 
         pedMove = transform.TransformDirection(0, 0, 1);
         anim.SetBool("Walk", true);
@@ -46,13 +46,20 @@ public class Pedestrian : MonoBehaviour
         if (timer <= 0)
         {
             {
-                StartCoroutine(Countdown());
                 Rotate();
                 timer = 100;
             }
         }
     }
 
+    // Triggers when the Car enters the collider
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Side")
+        {
+            speed *= -1;
+        }
+    }
     IEnumerator Countdown()
     {
         timer -= 1;
