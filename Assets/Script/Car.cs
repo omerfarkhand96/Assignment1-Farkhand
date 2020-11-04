@@ -40,7 +40,7 @@ public class Car : MonoBehaviour
             carPos -= vehicleMove * speed * Time.deltaTime;
             transform.position = carPos;
         }
-        Debug.Log(timer);
+        //Debug.Log(timer);
         if (timer <= 0) {
             {
                 Rotate();
@@ -50,15 +50,6 @@ public class Car : MonoBehaviour
 
     }
 
-    // Triggers
-    void OnTriggerExit(Collider other)
-    {
- 
-        if(other.tag == "turn")
-        {
-            speed *= -1;
-        }
-    }
 
     IEnumerator Countdown()
     {
