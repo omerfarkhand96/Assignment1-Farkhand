@@ -44,7 +44,7 @@ public class AnimationPlayer : MonoBehaviour {
                 anim.SetBool("Fire", false);
             }
 
-            if (Input.GetKeyUp(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 anim.SetBool("Reload", true);
             }
