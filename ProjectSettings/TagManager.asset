@@ -7,7 +7,6 @@ TagManager:
   - Fire
   - Grenade
   - Gun
-  - Bullet
   layers:
   - Default
   - TransparentFX

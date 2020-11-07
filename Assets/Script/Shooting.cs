@@ -8,8 +8,7 @@ public class Shooting : MonoBehaviour
 
     public GameObject bullet;
     public Transform gun;
-    public ParticleSystem system;
-    GameObject clone;
+    ExplosionPhysicsForce explosionPhysics;
     public Vector3 BulletForce = new Vector3(0, 100, 50000);
 
     // Start is called before the first frame update
@@ -19,15 +18,12 @@ public class Shooting : MonoBehaviour
     }
 
     // Update is called once per frame
-    [System.Obsolete]
     void Update()
     {
-      
-            if (Input.GetButtonUp("Fire1"))
-            {
-                StartCoroutine(FireBullet());
-            }
-     
+        if (Input.GetButtonUp("Fire1"))
+        {
+           StartCoroutine(FireBullet());
+        }
     }
 
     IEnumerator FireBullet()
@@ -35,7 +31,7 @@ public class Shooting : MonoBehaviour
         // Wait for five seconds
         yield return new WaitForSeconds(0.1f);
 
-        clone = Instantiate(bullet, gun.position, gun.rotation) as GameObject;
+        GameObject clone = Instantiate(bullet, gun.position, gun.rotation) as GameObject;
 
         // name the bullet as 'bullet'
         clone.name = "bullet";
@@ -57,13 +53,11 @@ public class Shooting : MonoBehaviour
 
 
     }
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(5f);
-    }
+
     private void OnCollisionEnter(Collision collision)
     {
-      /* StartCoroutine(Delay());
-       Destroy(GameObject.Find("bullet"));*/
+        //explosion.SetActive(true);
+        explosionPhysics.Explode();
+        Destroy(bullet);
     }
 }
